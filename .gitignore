@@ -1,0 +1,59 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+*.properties
+/dist/
+
+private.xml
+
+# Carpeta de compilación de NetBeans
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+
+# Archivos privados de NetBeans
+nb-configuration.xml
+nb-configuration.xml.orig
+
+# Carpetas y archivos de NetBeans
+nbproject/private/
+nbproject/Makefile-*.mk
+nbproject/Package-*.bash
+nbproject/configs/
+
+# Carpeta de datos del usuario en NetBeans
+nbproject/GeneratedCode/
+
+# Carpetas de respaldo y archivos temporales
+backup*/
+*.bak
+*~
+
+# Carpetas de configuración de IDE general
+.idea/
+*.iml
+*.iws
+*.ipr
+
