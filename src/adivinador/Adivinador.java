@@ -2,7 +2,6 @@ package adivinador;
 
 import java.io.*;
 import javax.swing.*;
-import java.util.Scanner;
 import java.io.Serializable;
 
 class Arbol implements Serializable {
@@ -45,10 +44,11 @@ class Arbol implements Serializable {
 }
 
 public class Adivinador {
-
+    //Ventanas emergentes
     public static String ventanaOpciones(String txt) {
         String[] opciones = {"Si", "No"};
         int opcionSeleccionada = JOptionPane.showOptionDialog(null, txt, "Adivinador", 0, JOptionPane.QUESTION_MESSAGE, null, opciones, "");
+        //Opcion seleccionada (Si o No)
         return opciones[opcionSeleccionada];
     }
 
@@ -117,13 +117,13 @@ public class Adivinador {
     //Intenta adivinar el animal
     public static void adivinar(Arbol arbol) {
         if (arbol.getIzquierda() == null && arbol.getDerecha() == null) {
-            if (respuesta_Si("Adivine! Es un " + arbol.getDato() + "?")) {
+            if (respuesta_Si("El animal un: '" + arbol.getDato() + "'?")) {
                 ventanaMensaje("Gane!");
             } else {
                 aprender(arbol);
             }
         } else {
-            if (respuesta_Si("El animal que estas pensando tiene la caracteristica: '" + arbol.getDato() + "'?")) {
+            if (respuesta_Si("El animal en el que estas pensando: '" + arbol.getDato() + "'?")) {
                 adivinar(arbol.getIzquierda());
             } else {
                 adivinar(arbol.getDerecha());
@@ -133,9 +133,9 @@ public class Adivinador {
 
     //Asigna los nodos a la derecha o a la izquierda dependiendo de la respuesta, de esta forma aprende
     public static void aprender(Arbol arbol) {
-        String nuevoAnimal = ventanaDialogo("Cual era el animal que estabas pensando? ");
+        String nuevoAnimal = ventanaDialogo("Cual era el animal en el que estabas pensando? ");
         String atributo = ventanaDialogo("Dame una caracteristica que distinga un " + arbol.getDato() + " de un " + nuevoAnimal + ": ");
-        if (respuesta_Si("Si el animal fuera un " + arbol.getDato() + ", que respuesta seria?")) {
+        if (respuesta_Si("Si el animal anterior fuera un " + arbol.getDato() + ", que opcion escogerias?")) {
             arbol.setIzquierda(new Arbol(arbol.getDato()));
             arbol.setDerecha(new Arbol(nuevoAnimal));
         } else {
