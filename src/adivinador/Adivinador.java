@@ -100,7 +100,7 @@ public class Adivinador {
         return resp.charAt(0) == 's';
     }
 
-    //Crea nodos nuevos por cada reepuesta que se de
+    //Crea la raiz del arbol
     public static Arbol crearRaizArbol() {
         Arbol raiz = cargarDatosArbol();
         if (raiz == null) {
@@ -134,7 +134,7 @@ public class Adivinador {
     //Asigna los nodos a la derecha o a la izquierda dependiendo de la respuesta, de esta forma aprende
     public static void aprender(Arbol arbol) {
         String nuevoAnimal = ventanaDialogo("Cual era el animal en el que estabas pensando? ");
-        String atributo = ventanaDialogo("Dame una caracteristica que distinga un " + arbol.getDato() + " de un " + nuevoAnimal + ": ");
+        String atributo = ventanaDialogo("Dame una caracteristica que tenga " + nuevoAnimal + " que no tenga " + arbol.getDato() + ": ");
         if (respuesta_Si("Si el animal anterior fuera un " + arbol.getDato() + ", que opcion escogerias?")) {
             arbol.setIzquierda(new Arbol(arbol.getDato()));
             arbol.setDerecha(new Arbol(nuevoAnimal));
