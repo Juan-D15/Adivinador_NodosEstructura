@@ -101,7 +101,7 @@ public class Adivinador {
     }
 
     //Crea la raiz del arbol
-    public static Arbol crearRaizArbol() {
+    public static Arbol raizArbol() {
         Arbol raiz = cargarDatosArbol();
         if (raiz == null) {
             if (respuesta_Si("Estas pensando en un animal? ")) {
@@ -117,13 +117,13 @@ public class Adivinador {
     //Intenta adivinar el animal
     public static void adivinar(Arbol arbol) {
         if (arbol.getIzquierda() == null && arbol.getDerecha() == null) {
-            if (respuesta_Si("El animal un: '" + arbol.getDato() + "'?")) {
+            if (respuesta_Si("El animal es un: '" + arbol.getDato() + "'?")) {
                 ventanaMensaje("Gane!");
             } else {
                 aprender(arbol);
             }
         } else {
-            if (respuesta_Si("El animal en el que estas pensando: '" + arbol.getDato() + "'?")) {
+            if (respuesta_Si("El animal en el que estas pensando tiene la caracteristica: '" + arbol.getDato() + "'?")) {
                 adivinar(arbol.getIzquierda());
             } else {
                 adivinar(arbol.getDerecha());
@@ -148,7 +148,7 @@ public class Adivinador {
 
     public static void main(String[] args) {
         ventanaMensaje("***PIENSA EN UN ANIMAL***");
-        Arbol raiz = crearRaizArbol();
+        Arbol raiz = raizArbol();
         while (true) {
             adivinar(raiz);
             if (!respuesta_Si("Quieres jugar de nuevo? ")) {
