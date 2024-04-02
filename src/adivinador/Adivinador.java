@@ -51,12 +51,12 @@ public class Adivinador {
         //Opcion seleccionada (Si o No)
         return opciones[opcionSeleccionada];
     }
-
+    //Ventana de dialogo
     public static String ventanaDialogo(String txt) {
         String dato = JOptionPane.showInputDialog(txt);
         return dato;
     }
-
+    //Ventana de mensaje
     public static void ventanaMensaje(String txt) {
         JOptionPane.showMessageDialog(null, txt);
     }
@@ -116,14 +116,17 @@ public class Adivinador {
 
     //Intenta adivinar el animal
     public static void adivinar(Arbol arbol) {
+        //Verifica si el nodo actual es un nodo hoja, es decir, si no tiene hijos ni a la derecha ni a la izquierda
         if (arbol.getIzquierda() == null && arbol.getDerecha() == null) {
-            if (respuesta_Si("El animal es un: '" + arbol.getDato() + "'?")) {
+            //Si no tiene mas datos en la derecha o izquierda pregunta si es ese animal
+            if (respuesta_Si("El animal es un/una: '" + arbol.getDato() + "'?")) {
                 ventanaMensaje("Gane!");
             } else {
                 aprender(arbol);
             }
         } else {
-            if (respuesta_Si("El animal en el que estas pensando tiene la caracteristica: '" + arbol.getDato() + "'?")) {
+            //Pregunta por una característica del animal y avanza en el árbol según la respuesta, buscando el nodo correcto para adivinar
+            if (respuesta_Si("El animal tiene la caracteristica: '" + arbol.getDato() + "'?")) {
                 adivinar(arbol.getIzquierda());
             } else {
                 adivinar(arbol.getDerecha());
@@ -131,17 +134,14 @@ public class Adivinador {
         }
     }
 
-    //Asigna los nodos a la derecha o a la izquierda dependiendo de la respuesta, de esta forma aprende
+    //Asigna nuevos nodos al arbol, de esta forma aprende
     public static void aprender(Arbol arbol) {
-        String nuevoAnimal = ventanaDialogo("Cual era el animal en el que estabas pensando? ");
+        String nuevoAnimal = ventanaDialogo("Cual era el animal en el que estabas pensando?");
         String atributo = ventanaDialogo("Dame una caracteristica que tenga " + nuevoAnimal + " que no tenga " + arbol.getDato() + ": ");
-        if (respuesta_Si("Si el animal anterior fuera un " + arbol.getDato() + ", que opcion escogerias?")) {
-            arbol.setIzquierda(new Arbol(arbol.getDato()));
-            arbol.setDerecha(new Arbol(nuevoAnimal));
-        } else {
-            arbol.setIzquierda(new Arbol(nuevoAnimal));
-            arbol.setDerecha(new Arbol(arbol.getDato()));
-        }
+        //asigna los datos al arbol
+        arbol.setIzquierda(new Arbol(nuevoAnimal));
+        arbol.setDerecha(new Arbol(arbol.getDato()));
+
         arbol.setDato(atributo);
         guardarDatosArbol(arbol);
     }
