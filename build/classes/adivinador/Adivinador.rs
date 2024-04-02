@@ -1,2 +1,0 @@
-adivinador.Arbol
-adivinador.Adivinador
